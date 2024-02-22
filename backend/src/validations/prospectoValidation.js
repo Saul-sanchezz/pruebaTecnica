@@ -41,10 +41,10 @@ const validacionRegistrar = [
     .isLength({ max: 12 }).withMessage('El numero no debe ser mayor a 12 caracteres')
     .trim()
     .escape(),
-  check("documentos").exists().withMessage('No existe ningun documento en la petición')
-    .notEmpty().withMessage('Documentos obligatorios')
-    .trim()
-    .escape(),
+  // check("documentos").exists().withMessage('No existe ningun documento en la petición')
+  //   .notEmpty().withMessage('Documentos obligatorios')
+  //   .trim()
+  //   .escape(),
   check("estatus").exists().withMessage('El Estatus no existe en la petición')
     .notEmpty().withMessage('El estatus es obligatorio')
     .isLength({ max: 20 }).withMessage('El numero no debe ser mayor a 20 caracteres')
@@ -114,10 +114,10 @@ const validacionAcctualizarProspecto = [
     .isLength({ max: 12 }).withMessage('El numero no debe ser mayor a 12 caracteres')
     .trim()
     .escape(),
-  check("documentos").exists().withMessage('No existe ningun documento en la petición')
-    .notEmpty().withMessage('Documentos obligatorios')
-    .trim()
-    .escape(),
+  // check("documentos").exists().withMessage('No existe ningun documento en la petición')
+  //   .notEmpty().withMessage('Documentos obligatorios')
+  //   .trim()
+  //   .escape(),
   check("estatus").exists().withMessage('El Estatus no existe en la petición')
     .notEmpty().withMessage('El estatus es obligatorio')
     .isLength({ max: 20 }).withMessage('El numero no debe ser mayor a 20 caracteres')

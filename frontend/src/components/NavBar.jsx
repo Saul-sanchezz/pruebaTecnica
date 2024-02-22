@@ -20,7 +20,7 @@ const NavBar = () => {
                 }
                 aria-current="page"
                 to="/">
-                Registro
+                Ejemplo
               </NavLink>
             </li>
             <li className="nav-item">
@@ -29,8 +29,8 @@ const NavBar = () => {
                   isActive ? "nav-link" : "nav-link"
                 }
                 aria-current="page"
-                to="/listar">
-                Listado de prospectos
+                to="/">
+                Ejemplo
               </NavLink>
             </li>
             <li className="nav-item">
@@ -40,7 +40,7 @@ const NavBar = () => {
                 }
                 to="/"
               >
-                Evaluacion
+                Ejemplo
               </NavLink>
             </li>
           </ul>

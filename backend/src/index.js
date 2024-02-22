@@ -25,7 +25,7 @@ const corsOptions = {
   }
 }
 
-// app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 app.use("/api/prospectos", prospectoRoutes)
 
 const PORT = process.env.PORT || 4000

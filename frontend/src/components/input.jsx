@@ -5,7 +5,10 @@ const input = ({
   type = "text",
   placeholder,
   onChange,
-  required = true
+  required = true,
+  value,
+  disabled,
+  multiple = null
 }) => {
   return (
     <div className={className}>
@@ -19,6 +22,9 @@ const input = ({
           placeholder={placeholder}
           onChange={onChange}
           // required={required}
+          value={value}
+          disabled={disabled}
+          multiple={multiple}
         />
       </div>
     </div>

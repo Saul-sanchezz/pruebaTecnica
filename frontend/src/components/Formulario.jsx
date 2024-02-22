@@ -12,8 +12,6 @@ const Formulario = ({
   setShow,
   toggleShow
 }) => {
-  // const [show, setShow] = useState(false);
-  // const toggleShow = () => setShow(!show);
 
   return (
     <form
@@ -27,6 +25,8 @@ const Formulario = ({
           label="Nombre"
           id="nombre"
           onChange={handlechange}
+          value={value?.nombre}
+          disabled={registro === "editar" && true}
         />
         <Input
           className="d-flex flex-column col-sm-6"
@@ -34,6 +34,8 @@ const Formulario = ({
           label="Primer Apellido"
           id="primerApellido"
           onChange={handlechange}
+          value={value?.primerApellido}
+          disabled={registro === "editar" && true}
         />
         <Input
           className="d-flex flex-column col-sm-6"
@@ -42,6 +44,8 @@ const Formulario = ({
           id="segundoApellido"
           onChange={handlechange}
           required={false}
+          value={value?.segundoApellido}
+          disabled={registro === "editar" && true}
         />
         <Input
           className="d-flex flex-column col-sm-6"
@@ -49,6 +53,8 @@ const Formulario = ({
           label="Colonia"
           id="colonia"
           onChange={handlechange}
+          value={value?.colonia}
+          disabled={registro === "editar" && true}
         />
         <Input
           className="d-flex flex-column col-sm-2"
@@ -57,6 +63,8 @@ const Formulario = ({
           id="numero"
           type="number"
           onChange={handlechange}
+          value={value?.numero}
+          disabled={registro === "editar" && true}
         />
         <Input
           className="d-flex flex-column col-sm-5"
@@ -64,6 +72,8 @@ const Formulario = ({
           label="Calle"
           id="calle"
           onChange={handlechange}
+          value={value?.calle}
+          disabled={registro === "editar" && true}
         />
         <Input
           className="d-flex flex-column col-sm-5"
@@ -72,6 +82,8 @@ const Formulario = ({
           id="codigoPostal"
           type="number"
           onChange={handlechange}
+          value={value?.codigoPostal}
+          disabled={registro === "editar" && true}
         />
         <Input
           className="d-flex flex-column col-sm-6"
@@ -80,6 +92,8 @@ const Formulario = ({
           id="telefono"
           type="number"
           onChange={handlechange}
+          value={value?.telefono}
+          disabled={registro === "editar" && true}
         />
         <Input
           className="d-flex flex-column col-sm-6"
@@ -87,6 +101,8 @@ const Formulario = ({
           label="RFC"
           id="rfc"
           onChange={handlechange}
+          value={value?.rfc}
+          disabled={registro === "editar" && true}
         />
         <Input
           className="d-flex flex-column col-sm-12"
@@ -94,6 +110,7 @@ const Formulario = ({
           id="documentos"
           type="file"
           required={false}
+          multiple={true}
         />
         <>
           {registro === "editar" ? (
@@ -110,14 +127,15 @@ const Formulario = ({
                   id="estatus"
                   name="estatus"
                   onChange={handlechange}
+                  value={value?.estatus}
                 >
-                  <option defaultValue></option>
-                  <option value="autorizado">Autorizado</option>
-                  <option value="rechazado">Rechazado</option>
+                  <option defaultValue>Enviado</option>
+                  <option value="Autorizado">Autorizado</option>
+                  <option value="Rechazado">Rechazado</option>
                 </select>
               </div>
               <>
-                {value?.estatus === "rechazado" && (
+                {value?.estatus === "Rechazado" && (
                   <div className="mb-3">
                     <label
                       htmlFor="observacionesRechaso"
@@ -130,6 +148,7 @@ const Formulario = ({
                       name="observacionesRechaso"
                       rows="3"
                       onChange={handlechange}
+                      value={value?.observacionesRechaso}
                     >
                     </textarea>
                   </div>

@@ -1,9 +1,14 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import clienteAxios from "../config/clienteAxios"
+import Sppiner from "../components/Sppiner"
 import Formulario from "../components/Formulario"
 import Alerta from "../components/Alerta"
 
 const Evaluacion = () => {
+  const [loading, setLoading] = useState(true)
+  const params = useParams()
+  const { id } = params
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const navigate = useNavigate()
@@ -26,6 +31,19 @@ const Evaluacion = () => {
     observacionesRechaso: "",
   })
 
+  useEffect(() => {
+    try {
+      const obtenerProspecto = async () => {
+        const { data } = await clienteAxios(`/prospectos/ver/${id}`)
+        setValue(data)
+      }
+      obtenerProspecto()
+      setTimeout(() => setLoading(false), 2000);
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
+
   const handlechange = (e) => {
     setValue((state) => ({
       ...state,
@@ -34,65 +52,65 @@ const Evaluacion = () => {
     console.log(value)
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    if (value.nombre === "" || value.nombre.trim() === "") {
+    if (value?.nombre === "") {
       setAlerta({
         error: true,
         msg: "El campo Nombre es obligatorio"
       })
       return
     }
-    if (value.primerApellido === "" || value.primerApellido.trim() === "") {
+    if (value.primerApellido === "") {
       setAlerta({
         error: true,
         msg: "El campo Primer apellido es obligatorio"
       })
       return
     }
-    if (value.colonia === "" || value.colonia.trim() === "") {
+    if (value.colonia === "") {
       setAlerta({
         error: true,
         msg: "La Colonia es obligatorio"
       })
       return
     }
-    if (value.numero === "" || value.numero.trim() === "") {
+    if (value.numero === "") {
       setAlerta({
         error: true,
         msg: "El Numero es obligatorio"
       })
       return
     }
-    if (value.calle === "" || value.calle.trim() === "") {
+    if (value.calle === "") {
       setAlerta({
         error: true,
         msg: "La Calle es obligatorio"
       })
       return
     }
-    if (value.codigoPostal === "" || value.codigoPostal.trim() === "") {
+    if (value.codigoPostal === "") {
       setAlerta({
         error: true,
         msg: "El Codigo postal es obligatorio"
       })
       return
     }
-    if (value.telefono === "" || value.telefono.trim() === "") {
+    if (value.telefono === "") {
       setAlerta({
         error: true,
         msg: "El Telefono es obligatorio"
       })
       return
     }
-    if (value.rfc === "" || value.rfc.trim() === "") {
+    if (value.rfc === "") {
       setAlerta({
         error: true,
         msg: "El RFC es obligatorio"
       })
       return
     }
-    if (value.estatus === "" || value.estatus.trim() === "") {
+    if (value.estatus === "") {
       setAlerta({
         error: true,
         msg: "El Estatus es obligatorio"
@@ -106,26 +124,41 @@ const Evaluacion = () => {
       })
       return
     }
-    setAlerta({})
-    setTimeout(() => toggleShow(), 1000);
-    setTimeout(() => setShow(false), 3000);
-    setTimeout(() => navigate("/"), 5000)
+    try {
+      const prospecto = {
+        ...value
+      }
+      const { data } = await clienteAxios.put(`/prospectos/actualizar/${id}`, prospecto)
+      setAlerta({})
+      setTimeout(() => toggleShow(), 1000);
+      setTimeout(() => setShow(false), 4000);
+      setTimeout(() => navigate("/"), 6000);
+    } catch (error) {
+      setAlerta({
+        error: true,
+        msg: error.response.data.msg
+      })
+    }
   }
 
   return (
     <main className="container">
-      <h1 className="text-center">EVALUACION DE PROSPECTO</h1>
-      {msg && <Alerta alerta={alerta} />}
-      <Formulario
-        handlechange={handlechange}
-        handleSubmit={handleSubmit}
-        registro="editar"
-        value={value}
-        setValue={setValue}
-        show={show}
-        setShow={setShow}
-        toggleShow={toggleShow}
-      />
+      {loading ? <Sppiner /> : (
+        <>
+          <h1 className="text-center">EVALUACION DE PROSPECTO</h1>
+          {msg && <Alerta alerta={alerta} />}
+          <Formulario
+            handlechange={handlechange}
+            handleSubmit={handleSubmit}
+            registro="editar"
+            value={value}
+            setValue={setValue}
+            show={show}
+            setShow={setShow}
+            toggleShow={toggleShow}
+          />
+        </>
+      )}
     </main>
   )
 }
