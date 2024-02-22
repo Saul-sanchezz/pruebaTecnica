@@ -25,9 +25,7 @@ function ModalSalir({ value, setValue }) {
       estatus: "",
       observacionesRechaso: "",
     })
-    setTimeout(() => {
-      navigate("/")
-    }, 2000);
+    navigate("/")
   };
 
   return (

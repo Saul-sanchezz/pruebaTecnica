@@ -14,7 +14,7 @@ const registrar = async (req, res) => {
 
 const obtenerProspectos = async (req, res) => {
   try {
-    const prospectos = await Prospecto.find()
+    const prospectos = await Prospecto.find().sort({ createdAt: 'desc' });
     return res.json(prospectos)
   } catch (error) {
     return res.status(500).send({ msg: "Ocurrio un error" })

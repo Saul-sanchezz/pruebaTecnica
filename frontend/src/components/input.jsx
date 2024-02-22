@@ -8,7 +8,9 @@ const input = ({
   required = true,
   value,
   disabled,
-  multiple = null
+  multiple = null,
+  minLength = 3,
+  maxLength
 }) => {
   return (
     <div className={className}>
@@ -25,6 +27,8 @@ const input = ({
           value={value}
           disabled={disabled}
           multiple={multiple}
+          minLength={minLength}
+          maxLength={maxLength}
         />
       </div>
     </div>

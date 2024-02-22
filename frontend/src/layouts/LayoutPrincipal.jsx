@@ -6,7 +6,7 @@ import Sppiner from "../components/Sppiner"
 const LayoutPrincipal = () => {
   const [prospectos, setProspectos] = useState([])
   const [loading, setLoading] = useState(true)
- 
+
   useEffect(() => {
     try {
       const obtenerProspectos = async () => {
@@ -29,7 +29,7 @@ const LayoutPrincipal = () => {
             <Link
               className="btn btn-primary"
               to="/registrar"
-            >Registrar Nuevo <i className="bi bi-person-fill-add"></i></Link>
+            >Registrar <i className="bi bi-person-fill-add"></i></Link>
           </div>
           {prospectos.length > 0 ? (
             <div className="container">
@@ -55,13 +55,17 @@ const LayoutPrincipal = () => {
                           className="d-flex gap-1"
                         >
                           <Link
-                            className="btn btn-secondary"
+                            className="btn btn-secondary align-self-center"
                             to={`listar/${prospecto.id}`}
-                          >Detalles <i className="bi bi-eye"></i></Link>
+                          ><span className="d-none d-md-inline">
+                              Detalles
+                            </span> <i className="bi bi-eye"></i></Link>
                           <Link
-                            className="btn btn-primary"
+                            className="btn btn-primary align-self-center"
                             to={`evaluacion/${prospecto.id}`}
-                          >Evaluar <i className="bi bi-pencil-square"></i></Link>
+                          ><span className="d-none d-md-inline">
+                              Evaluar
+                            </span> <i className="bi bi-pencil-square"></i></Link>
                         </div>
                       </td>
                     </tr>

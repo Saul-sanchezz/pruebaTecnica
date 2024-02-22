@@ -42,10 +42,16 @@ const ProspectoSchema = mongoose.Schema({
     require: true,
     trim: true,
   },
-  documentos: {
-    type: String,
-    require: true,
-  },
+  documentos: [{
+    name: {
+      type: String,
+      require: true,
+    },
+    data: {
+      type: String,
+      require: true,
+    }
+  }],
   estatus: {
     type: String,
     require: true,

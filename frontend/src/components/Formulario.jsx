@@ -10,7 +10,8 @@ const Formulario = ({
   setValue,
   show,
   setShow,
-  toggleShow
+  toggleShow,
+  handleFileChange
 }) => {
 
   return (
@@ -27,6 +28,7 @@ const Formulario = ({
           onChange={handlechange}
           value={value?.nombre}
           disabled={registro === "editar" && true}
+          maxLength={100}
         />
         <Input
           className="d-flex flex-column col-sm-6"
@@ -36,6 +38,7 @@ const Formulario = ({
           onChange={handlechange}
           value={value?.primerApellido}
           disabled={registro === "editar" && true}
+          maxLength={100}
         />
         <Input
           className="d-flex flex-column col-sm-6"
@@ -46,6 +49,7 @@ const Formulario = ({
           required={false}
           value={value?.segundoApellido}
           disabled={registro === "editar" && true}
+          maxLength={100}
         />
         <Input
           className="d-flex flex-column col-sm-6"
@@ -55,6 +59,7 @@ const Formulario = ({
           onChange={handlechange}
           value={value?.colonia}
           disabled={registro === "editar" && true}
+          maxLength={100}
         />
         <Input
           className="d-flex flex-column col-sm-2"
@@ -65,6 +70,7 @@ const Formulario = ({
           onChange={handlechange}
           value={value?.numero}
           disabled={registro === "editar" && true}
+          maxLength={8}
         />
         <Input
           className="d-flex flex-column col-sm-5"
@@ -74,6 +80,7 @@ const Formulario = ({
           onChange={handlechange}
           value={value?.calle}
           disabled={registro === "editar" && true}
+          maxLength={100}
         />
         <Input
           className="d-flex flex-column col-sm-5"
@@ -103,15 +110,27 @@ const Formulario = ({
           onChange={handlechange}
           value={value?.rfc}
           disabled={registro === "editar" && true}
+          maxLength={12}
         />
-        <Input
-          className="d-flex flex-column col-sm-12"
-          label="Documentos"
-          id="documentos"
-          type="file"
-          required={false}
-          multiple={true}
-        />
+        <div className="d-flex flex-column col-sm-12">
+          <div>
+            <label htmlFor={"documentos"} className="form-label">Documentos</label>
+            <input
+              id={"documentos"}
+              name={"documentos"}
+              className="form-control"
+              type={"file"}
+              onChange={handleFileChange}
+              disabled={registro === "editar" && true}
+              multiple={true}
+            />
+          </div>
+          {registro === "editar" && (
+             <p className="card-text">Documento/s: {" "}
+             {value?.documentos?.map(documento => documento.name)?.join(", ")}
+           </p>
+          )}
+        </div>
         <>
           {registro === "editar" ? (
             <>
@@ -165,7 +184,7 @@ const Formulario = ({
           <button
             type="submit"
             className="btn btn-primary"
-          >{registro === "editar"? "Actualizar" : "Enviar"}</button>
+          >{registro === "editar" ? "Actualizar" : "Enviar"}</button>
         </div>
         <ToastC
           show={show}

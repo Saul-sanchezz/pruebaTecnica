@@ -19,7 +19,8 @@ const ListarId = () => {
     telefono,
     rfc,
     estatus,
-    observacionesRechaso
+    observacionesRechaso,
+    documentos,
   } = prospecto
 
   useEffect(() => {
@@ -52,6 +53,9 @@ const ListarId = () => {
               <p className="card-text">Telefono: {telefono}</p>
               <p className="card-text">RFC: {rfc?.toUpperCase()}</p>
               <p className="card-text">Estatus: {estatus?.toUpperCase()}</p>
+              <p className="card-text">Documento/s: {" "}
+                {documentos?.map(documento => documento.name )?.join(", ")} 
+              </p>
               {estatus === "Rechazado" &&
                 <p className="card-text">
                   Observaciones: {observacionesRechaso?.toUpperCase()}

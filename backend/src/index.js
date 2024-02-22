@@ -4,8 +4,11 @@ const cors = require("cors")
 const conectarDB = require("./config/db.js")
 const prospectoRoutes = require("./routes/prospectoRoutes.js")
 
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
 dotenv.config()
 
