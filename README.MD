@@ -1,6 +1,14 @@
 # PRUEBA TECNICA
 
-Requerimiento.
+## Imagenes
+<img src="./img/Captura2.PNG">
+<img src="./img/Captura3.PNG">
+<img src="./img/Captura4.PNG">
+<img src="./img/Captura5.PNG">
+<img src="./img/Captura6.PNG">
+<img src="./img/Captura7.PNG">
+
+## Requerimiento.
 Desarrollar un sistema que permita a los promotores el seguimiento de sus prospectos a ser 
 clientes, así como una pantalla para el departamento de evaluación de prospectos donde se pueda 
 visualizar la información del prospecto, donde le permita la autorización o rechazo del mismo.
